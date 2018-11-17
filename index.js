@@ -1,15 +1,36 @@
 /** @format */
 
-import {Navigation} from "react-native-navigation";
-import App from './App';
+import {Navigation} from 'react-native-navigation';
+import {registerScreens} from './src/screen/';
 
-Navigation.registerComponent(`navigation.playground.WelcomeScreen`, () => App);
+registerScreens();
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
     root: {
-      component: {
-        name: "navigation.playground.WelcomeScreen"
+      bottomTabs: {
+        children: [{
+          component: {
+            name: 'Devices',
+            options: {
+              bottomTab: {
+                text: 'Devices',
+                icon: require('./assets/images/iot.png')
+              }
+            }
+          }
+        },
+          {
+            component: {
+              name: 'Connect',
+              options: {
+                bottomTab: {
+                  text: 'Connect',
+                  icon: require('./assets/images/ble.png')
+                }
+              }
+            }
+          }]
       }
     }
   });
